@@ -1,91 +1,55 @@
 #!/bin/bash
-IVAR="/etc/http-instas"
-SCPT_DIR="/etc/SCRIPT"
-rm $(pwd)/$0
-ofus () {
-unset txtofus
-number=$(expr length $1)
-for((i=1; i<$number+1; i++)); do
-txt[$i]=$(echo "$1" | cut -b $i)
-case ${txt[$i]} in
-".")txt[$i]="+";;
-"+")txt[$i]=".";;
-"1")txt[$i]="@";;
-"@")txt[$i]="1";;
-"2")txt[$i]="?";;
-"?")txt[$i]="2";;
-"3")txt[$i]="%";;
-"%")txt[$i]="3";;
-"/")txt[$i]="K";;
-"K")txt[$i]="/";;
-esac
-txtofus+="${txt[$i]}"
-done
-echo "$txtofus" | rev
-}
-veryfy_fun () {
-[[ ! -d ${IVAR} ]] && touch ${IVAR}
-[[ ! -d ${SCPT_DIR} ]] && mkdir ${SCPT_DIR}
-unset ARQ
-case $1 in
-"gerar.sh")ARQ="/usr/bin/";;
-"http-server.py")ARQ="/bin/";;
-*)ARQ="${SCPT_DIR}/";;
-esac
-mv -f $HOME/$1 ${ARQ}/$1
-chmod +x ${ARQ}/$1
-}
+clear
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
-echo -e "\033[1;36m--------------------KEY GENERATOR BY MARCHNICK----------------------\033[0m"
+echo -e "\033[1;36m-------------------- INSTALADOR SCRIPT DEVPS -----------------------\033[0m"
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
-read -p "INTRODUZCA SU KEY DE INSTALACIÓN: " Key
-echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
-[[ ! $Key ]] && {
-echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
-echo -e "\033[1;33mKey inválida!"
-echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
-exit
-}
-meu_ip () {
-MIP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
-MIP2=$(wget -qO- ipv4.icanhazip.com)
-[[ "$MIP" != "$MIP2" ]] && IP="$MIP2" || IP="$MIP"
-echo "$IP" > /usr/bin/vendor_code
-}
-meu_ip
-echo -e "\033[1;33mVerificando key... "
+echo -e "\033[1;33mPreparando la instalación desde tu repositorio (SIN KEY)...\033[0m"
+
 cd $HOME
-wget -O "$HOME/lista-arq" $(ofus "$Key")/$IP > /dev/null 2>&1
-#wget -O "$HOME/lista-arq" https://raw.githubusercontent.com/ENZOLU/KEYGEN-ADM/master/gerador/lista-arq > /dev/null 2>&1
-IP=$(ofus "$Key" | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')
-sleep 1s
-#wget -O "$HOME/lista-arq" $(ofus "$Key")/$IP > /dev/null 2>&1
-[[ -e $HOME/lista-arq ]] && {
-REQUEST=$(ofus "$Key" |cut -d'/' -f2)
-for arqx in `cat $HOME/lista-arq`; do
-echo -ne "\033[1;33mDescargando archivo: \033[1;31m[$arqx] "
-wget -O $HOME/$arqx ${IP}:81/${REQUEST}/${arqx} > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mRecibido con éxito!" || echo -e "\033[1;31m- \033[1;31mFalla (no recibido!)"
-[[ -e $HOME/$arqx ]] && veryfy_fun $arqx
-done
-[[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://www.dropbox.com/s/l6iqf5xjtjmpdx5/trans?dl=0 &> /dev/null
-mv -f /bin/http-server.py /bin/http-server.sh && chmod +x /bin/http-server.sh
-apt-get install bc -y &>/dev/null
-apt-get install screen -y &>/dev/null
-apt-get install nano -y &>/dev/null
-apt-get install curl -y &>/dev/null
-apt-get install netcat -y &>/dev/null
-apt-get install apache2 -y &>/dev/null
-sed -i "s;Listen 80;Listen 81;g" /etc/apache2/ports.conf
-service apache2 restart > /dev/null 2>&1 &
-IVAR2="/etc/key-gerador"
-echo "$Key" > $IVAR2
-rm $HOME/lista-arq
-echo -e "\033[1;33m Perfecto, utilize el comando \033[1;31mgerar.sh o gerar \033[1;33mpara administrar sus keys y
- actualizar la base del servidor"
-echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
-} || {
-echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
-echo -e "\033[1;33mKey inválida!"
-echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
-}
-echo -ne "\033[0m"1
+
+# Descargamos la lista de archivos directamente de TU repositorio de GitHub
+wget -q https://raw.githubusercontent.com/jorge415nivel/scriptdevpsgracias/master/lista-arq -O lista-arq
+
+if [[ -e $HOME/lista-arq ]]; then
+    echo -e "\033[1;33mDescargando archivos del sistema...\033[0m"
+    for arqx in $(cat $HOME/lista-arq); do
+        echo -ne "\033[1;33mDescargando: \033[1;36m[$arqx] \033[0m"
+        wget -q https://raw.githubusercontent.com/jorge415nivel/scriptdevpsgracias/master/$arqx -O $HOME/$arqx
+        
+        if [[ -e $HOME/$arqx ]]; then
+            echo -e "\033[1;32m- Recibido con éxito!\033[0m"
+            chmod +x $HOME/$arqx 2>/dev/null
+        else
+            echo -e "\033[1;31m- Falló\033[0m"
+        fi
+    done
+    
+    # Instalación de dependencias básicas del sistema
+    echo -e "\033[1;33mInstalando dependencias del sistema...\033[0m"
+    apt-get update -y > /dev/null 2>&1
+    apt-get install bc screen nano curl netcat apache2 -y > /dev/null 2>&1
+    
+    # Ajuste de puerto de apache si existe
+    if [[ -e /etc/apache2/ports.conf ]]; then
+        sed -i "s;Listen 80;Listen 81;g" /etc/apache2/ports.conf
+        service apache2 restart > /dev/null 2>&1
+    fi
+
+    # Crear comando global 'gerar' si el archivo existe
+    if [[ -e $HOME/gerar.sh ]]; then
+        cat $HOME/gerar.sh > /bin/gerar
+        chmod +x /bin/gerar
+    fi
+    
+    # Limpiar archivo temporal
+    rm -f $HOME/lista-arq
+    
+    echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
+    echo -e "\033[1;32m ¡INSTALACIÓN COMPLETADA CON ÉXITO! \033[0m"
+    echo -e "\033[1;33m Ahora puedes escribir \033[1;31m'menu'\033[1;33m o \033[1;31m'gerar'\033[1;33m para iniciar el panel.\033[0m"
+    echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
+else
+    echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
+    echo -e "\033[1;31m Error: No se pudo descargar la lista de archivos desde GitHub.\033[0m"
+    echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
+fi
