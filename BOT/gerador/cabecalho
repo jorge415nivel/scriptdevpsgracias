@@ -74,7 +74,6 @@ SEMCOR='\e[0m'
   -bra)ccor="${COLOR[0]}${SEMCOR}" && echo -e "${ccor}${2}${SEMCOR}";;
   -bar2)ccor="${COLOR[1]}◈ ━━━━━━━━━━━━━━ 🪐 - 🪐 ━━━━━━━━━━━━━━━ ◈" && echo -e "${SEMCOR}${ccor}${SEMCOR}";;
   -bar)ccor="${COLOR[1]}•••••••••••••••••••••••••••••••••••••••••••••••••" && echo -e "${SEMCOR}${ccor}${SEMCOR}";;
-  
  esac
 }
 
@@ -106,6 +105,7 @@ done
 echo -e " \033[1;33m[\033[1;31m${a}\033[1;33m] - \033[1;33m[\033[1;32m100%\033[1;33m]\033[0m"
 rm $HOME/fim
 }
+
 fun_bar1 () {
 comando[0]="$1"
 comando[1]="$2"
@@ -151,17 +151,17 @@ echo 'echo -e " Tiempo en Linea : $(uptime -p)"' >> /root/.bashrc
 echo 'echo -e " Fecha del Servidor : $DATE"' >> /root/.bashrc
 echo 'echo -e " Hora del Servidor : $TIME"' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
-echo 'echo -e " Bienvenido!"' >> .bashrc
+echo 'echo -e " Bienvenido!"' >> /root/.bashrc
 echo 'echo -e " Teclee cgh o menu para ver el listado de comandos."' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
 echo " $(source trans -b pt:${id} "STARTUP AGREGADO EXITOSAMENTE")"
 else
 wget -o /dev/null -O- https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/toolmaster > /bin/toolmaster
 chmod +x /bin/toolmaster
-echo "clear" >> .bashrc
+echo "clear" >> /root/.bashrc
 echo 'DATE=$(date +"%d-%m-%y")' >> /root/.bashrc
 echo 'TIME=$(date +"%T")' >> /root/.bashrc
-echo 'mf=$(free -h | grep Mem | sed 's/\s\+/,/g' | cut -d , -f4)' >> /root/.bashrc
+echo "mf=\$(free -h | grep Mem | sed 's/\s\+/,/g' | cut -d , -f4)" >> /root/.bashrc
 echo 'figlet -k ChumoGH | lolcat' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
 echo 'echo -e " Fecha de Instlacion : " $(cat < /bin/ejecutar/fecha)' >> /root/.bashrc
@@ -171,7 +171,7 @@ echo 'echo -e " Memoria Libre : $mf"' >> /root/.bashrc
 echo 'echo -e " Fecha del Servidor : $DATE"' >> /root/.bashrc
 echo 'echo -e " Hora del Servidor : $TIME"' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
-echo 'echo -e "Bienvenido!"' >> .bashrc
+echo 'echo -e "Bienvenido!"' >> /root/.bashrc
 echo 'echo -e " Teclee cgh o menu o adm para ver el listado de comandos."' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
 echo " $(source trans -b pt:${id} "STARTUP AGREGADO EXITOSAMENTE")"
@@ -179,10 +179,10 @@ sleep 1
 fi
 [[ -e $HOME/lista ]] && rm $HOME/lista
 clear
-msg -bar2 #echo -e "${cor[5]}◈ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 🪐 - 🪐 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ◈ "
+msg -bar2
 echo -e "${cor[5]}  $(source trans -b pt:${id} " Nombre de tu servidor.... OPCIONAL")"
 echo -e "${cor[3]} $(source trans -b pt:${id} "RECOMENDABLE 10 Caracteres Maximo!")"
-msg -bar2 #echo -e "${cor[5]}◈ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 🪐 - 🪐 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ◈ "
+msg -bar2
 echo -ne " Nombre del Servidor : "; read name
 [[ -z $name ]] && name="VPS-VIP"
 echo $name > /etc/adm-lite/name
@@ -201,12 +201,12 @@ echo -ne " \033[0m"
 clear
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "\033[1;32mCAMBIAR ZONA HORARIA EN ( * \033[1;33m menu\033[1;32m *\033[1;33m opcion 7 \033[1;32m*\033[1;33m opcion 14 \033[1;32m)"
-msg -bar2 #echo -e "${cor[5]}◈ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 🪐 - 🪐 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ◈ "
+msg -bar2
 echo -e "${cor[3]} ChumoGH-ADM Instalado Correctamente!"
 echo -e "${cor[2]}    ACTUALIZACION TEMPORAL CONCEDIDA EXITOSAMENTE"
-msg -bar2 #echo -e "${cor[3]}◈ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 🪐 - 🪐 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ◈ "
+msg -bar2
 echo -e "${cor[3]} |∆| ${cor[2]} Ahora puedes acceder al PANNEL"
-msg -bar2 #echo -e "${cor[3]}◈ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 🪐 - 🪐 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ◈ "
+msg -bar2
 echo -e "${cor[2]} $(source trans -b pt:${id} "Use los Comandos"): cgh, menu, adm"
 echo -e " Fecha de Instalacion : " $(cat < /bin/ejecutar/fecha)
 echo -e "${cor[2]} Para acceder al MENU, DISFRUTA LA ESTANCIA!"
@@ -221,7 +221,6 @@ exit
     exit 0
     }
 
-
 instalar_fun () {
 cor[2]="\033[1;37m"
 text=$(source trans -b pt:${id} "Instalando")
@@ -230,7 +229,8 @@ fun_bar1 'apt-get install screen -y' 'apt-get install python'
 fun_bar1 'apt-get install lsof -y' 'apt-get install python3-pip'
 fun_bar1 'apt-get install python' 'apt-get install unzip'
 echo -e "${cor[2]} $text Pannel de Administracion"
-fun_bar1 'apt-get install zip' 'apt-get install apache2 -y' 'apt install vnstat -y'
+fun_bar1 'apt-get install zip' 'apt-get install apache2 -y'
+apt install vnstat -y > /dev/null 2>&1
 echo -e "${cor[2]} $text Descomprensores"
 fun_bar1 'apt-get install ufw' 'apt-get install nmap'
 echo -e "${cor[2]} $text Interfaz de Control"
@@ -245,6 +245,7 @@ service apache2 restart > /dev/null 2>&1
     instalar_fun
     exit 0
     }
+
 remover_adm () {
 echo -e "${cor[1]} =================================== ${cor[0]}"
 echo -e "${cor[5]} ${txt[209]}"
@@ -280,6 +281,7 @@ echo -e "\033[0m"
  return
  }
 }
+
 clear
 #DECLARACAO DE VARIAVEIS
 _tmp="./usuarios_cache"
@@ -409,7 +411,7 @@ echo -e "\033[1;34m${txt[25]}"
 sleep 1s
 echo "4" >> $2
 elif [ "$1" = "5" ]; then
-echo -e "\033[1;35\]m${txt[25]}"
+echo -e "\033[1;35m${txt[25]}"
 sleep 1s
 echo "5" >> $2
 elif [ "$1" = "6" ]; then
@@ -511,7 +513,7 @@ idioma[6]="es Spanish"
 i="1"
 echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 echo -e "${cor[5]} ${txt[77]} ${txt[78]}
- ${txt[79]}"
+${txt[79]}"
 echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[3]}"
 while true; do
 [[ "${idioma[$i]}" = "" ]] && break
@@ -533,37 +535,37 @@ echo -e " ${txt[82]}"
 read -p " => " idiom
 number_var $idiom > /dev/null 2>&1
 if [ "$var_number" != "" ]; then
- [[ "${idioma[$idiom]}" != "" ]] && id=$(echo ${idioma[$idiom]} | awk '{print $1}')
+[[ "${idioma[$idiom]}" != "" ]] && id=$(echo ${idioma[$idiom]} | awk '{print $1}')
 else
- [[ "$(echo "$idiom" | wc -w)" -lt "3" ]] && {
-  [[ "$(echo "${idioma[@]}"|grep "$idiom")" != "" ]] && id="$idiom"
- }
+[[ "$(echo "$idiom" | wc -w)" -lt "3" ]] && {
+[[ "$(echo "${idioma[@]}"|grep "$idiom")" != "" ]] && id="$idiom"
+}
 fi
 [[ "$id" = "" ]] && {
- echo -e " Error!"
- sleep 1s
- source menu
- exit 0
- }
+echo -e " Error!"
+sleep 1s
+source menu
+exit 0
+}
 traduzir $id > /dev/null 2>&1 &
 echo "$id" > /etc/adm-lite/idioma_menuinst
 while true; do
 echo -ne "${cor[2]}["
- for((q=1; q <= 20; q++)); do
- echo -ne "${cor[3]}X"
- sleep 0.5s
- done
+for((q=1; q <= 20; q++)); do
+echo -ne "${cor[3]}X"
+sleep 0.5s
+done
 if [ -e $HOME/fim ]; then
 echo -ne "${cor[2]}] - \033[1;32m[OK][100%]"
 rm $HOME/fim
 break
- else
+else
 echo -ne "${cor[2]}] - ${cor[3]} ${txt[81]}"
 echo ""
 fi
 done
 echo ""
-msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+msg -bar
 echo -e "\033[0m"
 unset idioma
 exit 0
@@ -572,7 +574,7 @@ exit 0
 traduzir () {
 apt-get install gawk -y > /dev/null 2>&1
 [[ -e $_tmp4 ]] && rm $_tmp4
-rm $_dr && rm $_idioma
+rm -f "$_dr"
 cd /etc/adm-lite
 wget https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/IDIOMA_VPS/$1/idioma
 unset txt
@@ -586,26 +588,25 @@ _cont="1"
 [[ -e $_tmp3 ]] && rm $_tmp3
 touch $_tmp3
 for u in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9] |sort`; do
-
 echo "$_cont $u --" >> $_tmp3
 [[ -e $dir_user/$u.block ]] && echo -e "${cor[2]} |$_cont| >${cor[5]} $u \033[1;34m<--\033[1;31m LOCK" || echo -e "${cor[2]} |$_cont| >${cor[5]} $u"
 [[ "$u" = "" ]] && break
 _cont=$(($_cont + 1))
 done
-msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+msg -bar
 echo -e "${cor[5]} ${txt[42]}"
 echo -ne "${cor[6]}"
 read -p " ${txt[9]} " select_user
 if [ "$select_user" = "" ]; then
 echo -e "${cor[5]} ${txt[43]}"
 return
- fi
- if [ "$select_user" -le "$_cont" ] 1> /dev/null 2> /dev/null
+fi
+if [ "$select_user" -le "$_cont" ] 1> /dev/null 2> /dev/null
 then
 select_name=$(cat $_tmp3 | head -$select_user | tail -1 | awk '{print $2}')
 echo -e "${cor[5]} $name"
- else
- if cat /etc/passwd |grep $select_user: > /dev/null
+else
+if cat /etc/passwd |grep $select_user: > /dev/null
 then
 select_name="$select_user"
 else
@@ -614,7 +615,7 @@ echo -e "${cor[5]} ${txt[49]}"
 sleep 5s
 return
   fi
- fi
+fi
 unset select_user
 }
 
@@ -698,23 +699,21 @@ CLIENT="$1"
 senha="$2"
 daysrnf="$3"
 limit="$4"
-#cd /etc/openvpn/easy-rsa/
-#./easyrsa build-client-full $CLIENT nopass
 newclient "$CLIENT"
-#echo ""
-#echo "$CLIENT KEY" ~/"$CLIENT.ovpn"
 valid=$(date '+%C%y-%m-%d' -d " +$daysrnf days")
 datexp=$(date "+%d/%m/%Y" -d "+ $daysrnf days")
 useradd -M -s /bin/false -d /home/ovpn/ $CLIENT -e $valid
 usermod -p $(openssl passwd -1 $senha) $CLIENT
-#Arquivo
 echo -e " ${txt[318]}"
-msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ \033[1;37m"
+msg -bar
 read -p " [S/N]: " -e -i S newfile
   [[ ${newfile} = @(s|S|y|Y) ]] && {
   echo -e " ${txt[319]}"
   read -p " [S/N]: " -e -i S ovpnauth
-  [[ ${ovpnauth} != @(s|S|y|Y) ]] && sed -i "s;auth-user-pass;<auth-user-pass>\n$CLIENT\n$senha\n</auth-user-pass>;g" $HOME/$CLIENT.ovpn
+  [[ ${ovpnauth} != @(s|S|y|Y) ]] && sed -i "s;auth-user-pass;<auth-user-pass>
+$CLIENT
+$senha
+</auth-user-pass>;g" $HOME/$CLIENT.ovpn
   cd $HOME
   zip ./$CLIENT.zip ./$CLIENT.ovpn > /dev/null 2>&1
   echo -e "\033[1;31m ${txt[320]} ($HOME/$CLIENT.zip)"
@@ -852,18 +851,18 @@ lsof -V -i tcp -P -n | grep -v "ESTABLISHED" |grep -v "COMMAND" | grep "LISTEN" 
 while read port; do
 var1=$(echo $port | awk '{print $1}')
 var2=$(echo $port | awk '{print $9}' | awk -F ":" '{print $2}')
- if [ ! -e "$porta_var" ]; then
- echo -e "$var1 $var2" > $porta_var
- fi
- if [ "$(cat $porta_var | grep "$var1" | grep "$var2")" = "" ]; then
- echo -e "$var1 $var2" >> $porta_var
- fi
+if [ ! -e "$porta_var" ]; then
+echo -e "$var1 $var2" > $porta_var
+fi
+if [ "$(cat $porta_var | grep "$var1" | grep "$var2")" = "" ]; then
+echo -e "$var1 $var2" >> $porta_var
+fi
 done < $portas_var
 i=1
 while read pts; do
- if [ "$pts" = "" ]; then
- break
- fi
+if [ "$pts" = "" ]; then
+break
+fi
 service_porta[$i]=$(echo "$pts" | awk '{print $2}')
 service_serv[$i]=$(echo "$pts" | awk '{print $1}')
 echo -e " \033[1;37m[$i] -> \033[1;31m${service_serv[$i]} : \033[1;32m${service_porta[$i]}"
@@ -915,7 +914,6 @@ echo -e "ON"
 else
 echo -e "OFF"
 fi`;
-
 echo -e " \033[1;37m  Juegos en Linea › \033[1;32m$xbadvpn \033[1;33m \033[1;37m  Netflix › \033[1;32m$xnetflix \033[1;33m
 \033[1;33m 【 SSH 】›\033[1;32m$sshports\033[1;33m【Squid】›\033[1;32m$squidports\033[1;33m
 \033[1;33m 【DROPBEAR】›\033[1;32m$dropbearports\033[1;33m【SSL】›\033[1;32m$sslports\033[1;33m"
@@ -928,12 +926,12 @@ lsof -V -i tcp -P -n | grep -v "ESTABLISHED" |grep -v "COMMAND" | grep "LISTEN" 
 while read port; do
 var1=$(echo $port | awk '{print $1}')
 var2=$(echo $port | awk '{print $9}' | awk -F ":" '{print $2}')
- if [ ! -e "$porta_var" ]; then
- echo -e "$var1 $var2" > $porta_var
- fi
- if [ "$(cat $porta_var | grep "$var1" | grep "$var2")" = "" ]; then
- echo -e "$var1 $var2" >> $porta_var
- fi
+if [ ! -e "$porta_var" ]; then
+echo -e "$var1 $var2" > $porta_var
+fi
+if [ "$(cat $porta_var | grep "$var1" | grep "$var2")" = "" ]; then
+echo -e "$var1 $var2" >> $porta_var
+fi
 done < $portas_var
 i=1
 while true; do
@@ -941,9 +939,6 @@ a=$(sed -n "$i"p $porta_var | awk '{print $1}')
 b=$(sed -n "$i"p $porta_var | awk '{print $2}')
 [[ "$a" != "" ]] && texto="\033[1;34m ▸ \033[1;37m$a: \033[1;31m$b" || texto=""
 [[ "$a" = "" ]] && break
-#if [[ $a = "systemd-r" ]];then
-#texto=""
-#fi
 if [[ $a = "apache2" ]];then
 texto="\033[1;34m ▸ \033[1;37mAPACHE: \033[1;31m$b"
 fi
@@ -1000,9 +995,6 @@ c=$(sed -n "$i"p $porta_var | awk '{print $1}')
 d=$(sed -n "$i"p $porta_var | awk '{print $2}')
 [[ "$c" != "" ]] && texto_="\033[1;34m ◂ \033[1;37m$c: \033[1;31m$d" || texto_=""
 [[ "$a" = "" ]] && break
-#if [[ $c = "systemd-r" ]];then
-#texto_=""
-#fi
 if [[ $c = "apache2" ]];then
 texto_="\033[1;34m ◂ \033[1;37mAPACHE: \033[1;31m$d"
 fi
@@ -1070,16 +1062,17 @@ exitokey=$(cat < /root/exito)
 cpuss=$(cat /proc/cpuinfo | grep processor | wc -l)
 modelo1=$(lscpu | grep Arch | sed 's/\s\+/,/g' | cut -d , -f2)
 __IP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -oE '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
-#echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+
 figlet -p -f smslant < /root/name | lolcat
-msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
-[[ "$VERIFICAR" = "on" ]] && 
+msg -bar
+if [[ "$VERIFICAR" = "on" ]]; then
 echo -e "${cor[2]} ‣ \033[1;37m${txt[1]} $__onlines ${cor[2]} ‣ \033[1;37m${txt[2]} $__vencidos ${cor[2]} ‣ \033[1;37m Eliminados: $ukk"
+fi
 echo -e "${cor[2]} ‣ \033[1;37m${txt[3]}$_os ${cor[2]} ‣ \033[1;37mBase:\033[1;31m$modelo1 ${cor[2]}‣ \033[1;37m${txt[346]}\033[1;31m $_core "
 echo -e "${cor[2]} ‣ \033[1;37m${txt[331]} \033[1;31m$__IP ${cor[2]}  ‣ \033[1;37mFECHA: \033[1;31m$_hora" 
-msg -bar #echo -e "${cor[2]} •••••••••••••••••••••••••••••••••••••••••••••••••  ${cor[0]}"
+msg -bar
 echo -e "${cor[1]}\033[1;37m Key: ${cor[1]}$exitokey "
 msg -bar
 ports_
-msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪•••••••••••• ${cor[0]}"
+msg -bar
 echo -e "${cor[2]} ${vesaoSCT} ${cor[0]}"
